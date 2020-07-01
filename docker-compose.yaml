@@ -23,8 +23,8 @@ services:
           - node.role == manager
       labels:
         - "traefik.enable=true"
-        - "traefik.http.services.justAdummyService.loadbalancer.server.port=1337"
         - "traefik.http.routers.traefik.rule=Host(`zabbix-traefik.cursozabbix5.local`)"
+        #- "traefik.http.services.justAdummyService.loadbalancer.server.port=1337"
         - "traefik.http.routers.traefik.service=api@internal"
     ports:
       - "80:80"
@@ -52,7 +52,10 @@ services:
         - /mnt/data-docker/zabbix-server/alertscripts:/usr/lib/zabbix/alertscripts:ro
     ports:
       - "10051:10051"
-    deploy: *template-deploy
+    deploy:
+      <<: *template-deploy
+      labels:
+        - "traefik.enable=false"
   zabbix-frontend:
     image: zabbix/zabbix-web-nginx-mysql:alpine-5.0.1
     env_file: 
