@@ -64,7 +64,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.zabbix-frontend.entrypoints=web"
-        - "traefik.http.routers.zabbix-frontend.rule=Host(`frontend.cursozabbix5.local`)"
+        - "traefik.http.routers.zabbix-frontend.rule=Host(`zabbix-frontend.cursozabbix5.local`)"
         - "traefik.http.services.zabbix-frontend.loadbalancer.server.port=8080"
   grafana:
     image: grafana/grafana:7.0.3
