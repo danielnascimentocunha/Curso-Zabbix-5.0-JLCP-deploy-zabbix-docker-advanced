@@ -65,7 +65,7 @@ services:
         - "traefik.enable=true"
         - "traefik.http.routers.zbx-frontend.entrypoints=web"
         - "traefik.http.routers.zbx-frontend.rule=Host(`frontend.cursozabbix5.local`)"
-        - "traefik.http.services.zbx-frontend.loadbalancer.server.port=80"
+        - "traefik.http.services.zbx-frontend.loadbalancer.server.port=8080"
   grafana:
     image: grafana/grafana:7.0.3
     environment: 
@@ -78,9 +78,9 @@ services:
       <<: *template-deploy
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.zbx-frontend.entrypoints=web"
-        - "traefik.http.routers.zbx-frontend.rule=Host(`grafana.cursozabbix5.local`)"
-        - "traefik.http.services.zbx-frontend.loadbalancer.server.port=80"
+        - "traefik.http.routers.grafana.entrypoints=web"
+        - "traefik.http.routers.grafana.rule=Host(`grafana.cursozabbix5.local`)"
+        - "traefik.http.services.grafana.loadbalancer.server.port=3000"
 
 networks: 
   monitoring-network:
