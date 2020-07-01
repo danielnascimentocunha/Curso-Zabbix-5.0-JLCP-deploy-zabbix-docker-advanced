@@ -12,7 +12,12 @@ services:
   traefik:
     image: traefik:v2.2.1
     deploy:
-      <<: *template-deploy
+      mode: global
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 10s
       placement:
         constraints:
           - node.role == manager
@@ -58,9 +63,9 @@ services:
       <<: *template-deploy
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.frontend.entrypoints=web"
-        - "traefik.http.routers.frontend.rule=Host(`frontend.cursozabbix5.local`)"
-        - "traefik.http.services.frontend.loadbalancer.server.port=8080"
+        - "traefik.http.routers.zabbix-frontend.entrypoints=web"
+        - "traefik.http.routers.zabbix-frontend.rule=Host(`frontend.cursozabbix5.local`)"
+        - "traefik.http.services.zabbix-frontend.loadbalancer.server.port=8080"
   grafana:
     image: grafana/grafana:7.0.3
     environment: 
