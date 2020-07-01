@@ -12,15 +12,10 @@ services:
   traefik:
     image: traefik:v2.2.1
     deploy:
+      <<: *template-deploy
       placement:
         constraints:
           - node.role == manager
-      replica: 1
-      update_config:
-        parallelism: 1
-        delay: 10s
-      restart_policy:
-        condition: on-failure
       labels:
         - "traefik.enable=true"
         - "traefik.http.services.justAdummyService.loadbalancer.server.port=1337"
