@@ -29,6 +29,9 @@
         - [Ativando a disponibilidade do node novamente](#ativando-a-disponibilidade-do-node-novamente)
     - [Criando rede para o nosso ambiente](#criando-rede-para-o-nosso-ambiente)
     - [Inspect de todas as redes do docker novamente](#inspect-de-todas-as-redes-do-docker-novamente)
+  - [Adicionando outros nodes manager no cluster](#adicionando-outros-nodes-manager-no-cluster)
+    - [Pegando Token para manager](#pegando-token-para-manager)
+    - [Criando regra de firewall em todos os nodes](#criando-regra-de-firewall-em-todos-os-nodes)
   - [Deploy stack Zabbix](#deploy-stack-zabbix)
     - [Instalar o GIT](#instalar-o-git)
     - [Clonando depositório](#clonando-depositório)
@@ -267,6 +270,24 @@ docker network create --driver overlay monitoring-network
 for net in `docker network ls |grep -v NAME | awk '{print $2}'`;do ipam=`docker network inspect $net --format {{.IPAM}}` && echo $net - $ipam; done
 ```
 
+## Adicionando outros nodes manager no cluster
+
+### Pegando Token para manager
+
+```bash
+docker swarm join-token manager
+```
+
+### Criando regra de firewall em todos os nodes
+
+```bash
+firewall-cmd --parmanent --add-port=2377/tcp
+firewall-cmd --permanent --add-port=7946/tcp
+firewall-cmd --permanent --add-port=7946/udp
+firewall-cmd --permanent --add-port=4789/udp
+firewall-cmd --reload
+```
+
 ## Deploy stack Zabbix
 
 ### Instalar o GIT
@@ -281,6 +302,8 @@ dnf install -y git
 cd ~/
 git clone <URL DO SEU GIT>
 ```
+
+`git@github.com:robertsilvatech/deploy-zabbix-docker-advanced.git`
 
 ### Inicianlizando a stack 
 
