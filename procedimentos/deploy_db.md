@@ -248,9 +248,15 @@ grant all privileges on zabbix.* to 'zabbix'@'localhost';
 ### Criar usuário zabbix permitindo a conexão através de um servidor remoto
 
 ```bash
-create user 'zabbix'@'10.0.0.51' identified with mysql_native_password by 'Curso!Zabbix5';
-grant all privileges on zabbix.* to 'zabbix'@'10.0.0.51';
-UPDATE mysql.user SET Super_Priv='Y' WHERE user='zabbix' AND host='10.0.0.51';
+create user 'zabbix'@'10.0.0.61' identified with mysql_native_password by 'Curso!Zabbix5';
+grant all privileges on zabbix.* to 'zabbix'@'10.0.0.61';
+UPDATE mysql.user SET Super_Priv='Y' WHERE user='zabbix' AND host='10.0.0.61';
+create user 'zabbix'@'10.0.0.62' identified with mysql_native_password by 'Curso!Zabbix5';
+grant all privileges on zabbix.* to 'zabbix'@'10.0.0.62';
+UPDATE mysql.user SET Super_Priv='Y' WHERE user='zabbix' AND host='10.0.0.62';
+create user 'zabbix'@'10.0.0.63' identified with mysql_native_password by 'Curso!Zabbix5';
+grant all privileges on zabbix.* to 'zabbix'@'10.0.0.63';
+UPDATE mysql.user SET Super_Priv='Y' WHERE user='zabbix' AND host='10.0.0.63';
 flush privileges;
 ```
 

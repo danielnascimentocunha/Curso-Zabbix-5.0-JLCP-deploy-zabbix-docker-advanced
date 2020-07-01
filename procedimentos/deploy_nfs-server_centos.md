@@ -16,6 +16,7 @@
     - [Inicializando o serviço](#inicializando-o-serviço)
     - [Liberando Firewall](#liberando-firewall)
   - [NFS-Client no CentOS](#nfs-client-no-centos)
+    - [Instalar utilitários no client](#instalar-utilitários-no-client)
     - [Instalar NFS no client](#instalar-nfs-no-client)
     - [Criar diretório para o ponto de montagem](#criar-diretório-para-o-ponto-de-montagem)
     - [Validando o ponto de montagem](#validando-o-ponto-de-montagem)
@@ -132,6 +133,14 @@ firewall-cmd --reload
 ```
 
 ## NFS-Client no CentOS
+
+`LEMBRE-SE DE VERIFICAR A DATA E HORA DOS SERVIDORES`
+
+### Instalar utilitários no client
+
+```bash
+dnf install -y net-tools vim nano epel-release wget curl tcpdump
+```
 
 ### Instalar NFS no client
 
