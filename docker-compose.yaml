@@ -15,7 +15,7 @@ services:
       placement:
         constraints:
           - node.role == manager
-      mode: global
+      replica: 1
       update_config:
         parallelism: 1
         delay: 10s
