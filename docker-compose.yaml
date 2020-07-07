@@ -24,7 +24,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.traefik.rule=Host(`zabbix-traefik.cursozabbix5.local`)"
-        #- "traefik.http.services.justAdummyService.loadbalancer.server.port=1337"
+        - "traefik.http.services.justAdummyService.loadbalancer.server.port=1337"
         - "traefik.http.routers.traefik.service=api@internal"
     ports:
       - "80:80"

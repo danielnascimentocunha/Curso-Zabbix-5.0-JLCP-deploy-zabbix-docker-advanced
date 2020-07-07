@@ -30,8 +30,8 @@
     - [Criando rede para o nosso ambiente](#criando-rede-para-o-nosso-ambiente)
     - [Inspect de todas as redes do docker novamente](#inspect-de-todas-as-redes-do-docker-novamente)
   - [Adicionando outros nodes manager no cluster](#adicionando-outros-nodes-manager-no-cluster)
-    - [Pegando Token para manager](#pegando-token-para-manager)
     - [Criando regra de firewall em todos os nodes](#criando-regra-de-firewall-em-todos-os-nodes)
+    - [Pegando Token para manager](#pegando-token-para-manager)
   - [Deploy stack Zabbix](#deploy-stack-zabbix)
     - [Instalar o GIT](#instalar-o-git)
     - [Clonando depositório](#clonando-depositório)
@@ -272,20 +272,20 @@ for net in `docker network ls |grep -v NAME | awk '{print $2}'`;do ipam=`docker 
 
 ## Adicionando outros nodes manager no cluster
 
-### Pegando Token para manager
-
-```bash
-docker swarm join-token manager
-```
-
 ### Criando regra de firewall em todos os nodes
 
 ```bash
-firewall-cmd --parmanent --add-port=2377/tcp
+firewall-cmd --permanent --add-port=2377/tcp
 firewall-cmd --permanent --add-port=7946/tcp
 firewall-cmd --permanent --add-port=7946/udp
 firewall-cmd --permanent --add-port=4789/udp
 firewall-cmd --reload
+```
+
+### Pegando Token para manager
+
+```bash
+docker swarm join-token manager
 ```
 
 ## Deploy stack Zabbix
@@ -309,6 +309,7 @@ git clone <URL DO SEU GIT>
 
 ```bash
 cd <NOME_DA_PASTA_CLONADA>
+sh create.sh
 sh grafana.sh
 docker stack deploy -c docker-compose.yaml maratonazabbix
 ```
