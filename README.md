@@ -1,8 +1,15 @@
-# Segunda Maratona Zabbix
+# Curso Zabbix 5.0 - Zabbix em Docker SWARM com alta disponibilidade
 
-Este repositório contem os arquivos da segunda maratona Zabbix.
+Este repositório contem os arquivos do Curso de Zabbix 5.0 da JLCP. 
 
-Para fazer o deploy do ambiente siga os seguintes procedimentos
+Aqui estamos montando um deploy do Zabbix 5 com 6 Máquinas:
+	* Banco de dados Mysql no CentOS8
+	* HA Proxy no CentOS8
+	* NFS no CentOS8
+	* Três nós master do SWARM com CentOs8
 
-- [Deploy MySQL 8 no Centos 8](procedimentos/deploy_db.md)
-- [Deploy Stack Zabbix em Docker com Centos 8](procedimentos/deploy_zabbix_front_grafana_on_docker.md)
+No SWARM Estão rodando os Serviços
+	* Zabbix Server (1 instancia)
+	* Zabbix Front-End (1 instancia)
+	* Grafana (1 instancia)
+	* Traefik (3 Instancias)
