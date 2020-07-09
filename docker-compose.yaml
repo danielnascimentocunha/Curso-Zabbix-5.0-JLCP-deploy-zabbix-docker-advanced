@@ -24,6 +24,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.traefik.rule=Host(`zabbix-traefik.cursozabbix5.local`)"
+#        - "traefik.http.routers.traefik.rule='Host(`zabbix-traefik.cursozabbix5.local`)'"
         - "traefik.http.services.justAdummyService.loadbalancer.server.port=1337"
         - "traefik.http.routers.traefik.service=api@internal"
     ports:
@@ -67,6 +68,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.zbx-frontend.entrypoints=web"
+#        - "traefik.http.routers.zbx-frontend.rule=Host(`zabbix-frontend.cursozabbix5.local`) || (Host(`casa.ampliarse.com.br`)&& Path(`/zabbix`))"
         - "traefik.http.routers.zbx-frontend.rule=Host(`zabbix-frontend.cursozabbix5.local`)"
         - "traefik.http.services.zbx-frontend.loadbalancer.server.port=8080"
   grafana:
@@ -82,7 +84,8 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.grafana.entrypoints=web"
-        - "traefik.http.routers.grafana.rule=Host(`grafana.cursozabbix5.local`)"
+#        - "traefik.http.routers.grafana.rule=Host(`grafana.cursozabbix5.local`) || (Host(`casa.ampliarse.com.br`)&& Path(`/grafana`))"
+        - "traefik.http.routers.grafana.rule=Host(`grafana.cursozabbix5.local`,`grafana.casa.ampliarse.com.br`)"
         - "traefik.http.services.grafana.loadbalancer.server.port=3000"
 
 networks: 
